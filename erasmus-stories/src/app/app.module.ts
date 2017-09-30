@@ -18,7 +18,8 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
 
-import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '@angular/material';
+import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, MatMenuModule} from '@angular/material';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule,
+    MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, BrowserAnimationsModule, MatMenuModule,
     routing
   ],
   providers: [],
