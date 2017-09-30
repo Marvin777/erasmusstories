@@ -9,17 +9,17 @@ export class GameService {
   }
 
   getNextUserForCard(): User {
-    /**    let loggedInUser = this.userService.getLoggedInUser();
+    let loggedInUser = this.userService.getLoggedInUser();
 
-    let nextID;
+    let nextID = 0;
     do {
       nextID = this.getRandomInt(this.userService.getHighestID());
-    }while(!loggedInUser.hasGuessedRight.includes(nextID));
+    } while (loggedInUser.hasGuessedRight.includes(nextID));
 
-    Array.prototype.push.apply(loggedInUser.hasSeen, nextID);
+    loggedInUser.hasSeen.push(nextID);
     this.userService.saveChangesForLoggedInUser();
-     **/
-    return this.userService.getUser(0);
+
+    return this.userService.getUser(nextID);
   }
 
   /**
@@ -27,25 +27,25 @@ export class GameService {
    */
   getNameOptions(user: User): Array<String>{
       //getAllUsernamesWithGender user.gender //TODO firebase
-    let genderBasedUsernameList = ["Sina", "Sarah"];
+    let genderBasedUsernameList = this.userService.getGenderBasedList(user.gender);
 
-      let nameList = [];
-    //Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
-    //Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
-    //Array.prototype.push.apply(nameList, user.name);
+    let nameList = [];
+    nameList.push(genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)].name);
+    nameList.push(genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)].name);
+    nameList.push(user.name);
 
-    //return nameList;
-    return genderBasedUsernameList
+
+    return nameList;
   }
 
 
   private getRandomInt(max:number) : number{
-    return Math.floor(Math.random() * (max + 1));
+    return Math.floor(Math.random() * max);
   }
 
   choseCorrectly(userID: number){
     let loggedInUser = this.userService.getLoggedInUser();
-    Array.prototype.push.apply(loggedInUser.hasGuessedRight, userID);
+    loggedInUser.hasGuessedRight.push(userID);
     loggedInUser.gameScore+=1;
     this.userService.saveChangesForLoggedInUser();
   }

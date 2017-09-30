@@ -7,6 +7,7 @@ export class User {
               public country: string,
               public city: string,
               public url: string,
+              public description: string,
               // Spieldaten
               public storyScore: number,
               public gameScore: number,

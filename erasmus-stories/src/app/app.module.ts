@@ -28,7 +28,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -63,6 +64,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    MatTooltipModule,
     routing
   ],
   providers: [GameService, UserService, StoryService],
