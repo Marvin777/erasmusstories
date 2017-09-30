@@ -6,7 +6,7 @@ import {UserService} from "../../services/user.service";
 @Component({
   selector: 'app-name-game',
   templateUrl: './name-game.component.html',
-  styleUrls: ['./name-game.component.css'],
+  styleUrls: ['./game-card.component.css']
 })
 export class NameGameComponent implements OnInit {
 

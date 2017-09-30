@@ -32,6 +32,7 @@ import {
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {DataService} from "./services/dataService";
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatTooltipModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService],
+  providers: [GameService, UserService, StoryService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
