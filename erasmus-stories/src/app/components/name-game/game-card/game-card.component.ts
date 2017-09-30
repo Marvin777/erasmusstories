@@ -25,4 +25,8 @@ export class GameCardComponent implements OnInit {
     this.clicked.emit("next");
   }
 
+  showUserStories() {
+    this.userService.saveData();
+  }
+
 }

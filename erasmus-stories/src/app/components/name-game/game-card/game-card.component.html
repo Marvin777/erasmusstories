@@ -2,8 +2,9 @@
   <md-card-header>
     <img md-card-avatar [src]="user?.url"/>
     <md-card-title>
-      <span>{{user?.name}}</span>
-      <div style="float: right;">score: {{loggedInUser?.gameScore}}</div>
+      {{user?.name}}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      score: {{loggedInUser?.gameScore}}
 
     </md-card-title>
     <md-card-subtitle>{{user?.country}}, {{user?.city}}</md-card-subtitle>
@@ -17,7 +18,7 @@
       <button mdTooltip="Chat" md-icon-button class="btn btn-app" color="primary">
         <md-icon>chat_bubble_outline</md-icon>
       </button>
-      <button mdTooltip="Stories" md-icon-button class="btn btn-app" color="primary">
+      <button mdTooltip="Stories" md-icon-button class="btn btn-app" color="primary" (click)="showUserStories()">
         <md-icon>library_books</md-icon>
       </button>
     </div>

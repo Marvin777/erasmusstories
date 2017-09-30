@@ -35,6 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthService} from "app/services/auth.service";
 import {UserGuard} from "./components/user-guard.service";
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import {DataService} from "./services/dataService";
 
 
 @NgModule({
@@ -48,8 +49,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent,
-    WelcomeComponent
+    GameCardComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +71,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     MatTooltipModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, AuthService, UserGuard],
+  providers: [GameService, UserService, StoryService, AuthService, UserGuard, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

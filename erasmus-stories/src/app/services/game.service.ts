@@ -26,7 +26,6 @@ export class GameService {
    * liefert eine Liste mit drei Namen als Auswahlmöglichkeit
    */
   getNameOptions(user: User): Array<String>{
-      //getAllUsernamesWithGender user.gender //TODO firebase
     let genderBasedUsernameList = this.userService.getGenderBasedList(user.gender);
 
     let nameList = [];
