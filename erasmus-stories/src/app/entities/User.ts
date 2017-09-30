@@ -1,10 +1,13 @@
 export class User {
 
   constructor(public id: number,
+              // Benutzerdaten
               public name: string,
               public gender: string,
               public country: string,
               public city: string,
+              public url: string,
+              // Spieldaten
               public storyScore: number,
               public gameScore: number,
               public hasSeen: number[],

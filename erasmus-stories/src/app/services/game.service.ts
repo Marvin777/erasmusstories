@@ -8,8 +8,8 @@ export class GameService {
   constructor(private userService: UserService) {
   }
 
-  getNextCard(): User{
-    let loggedInUser = this.userService.getLoggedInUser();
+  getNextUserForCard(): User {
+    /**    let loggedInUser = this.userService.getLoggedInUser();
 
     let nextID;
     do {
@@ -18,8 +18,8 @@ export class GameService {
 
     Array.prototype.push.apply(loggedInUser.hasSeen, nextID);
     this.userService.saveChangesForLoggedInUser();
-
-    return this.userService.getUser(nextID);
+     **/
+    return this.userService.getUser(0);
   }
 
   /**

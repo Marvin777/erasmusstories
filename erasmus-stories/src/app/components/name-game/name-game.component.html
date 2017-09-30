@@ -1,3 +1,6 @@
 <p>
   name-game works!
 </p>
+
+<img [src]="user?.url" *ngIf="showPicture" style="max-height: 75px; max-width: 75px;" (click)="showSolution()">
+<app-game-card *ngIf="!showPicture" [user]="user" (click)="showNextCard()"></app-game-card>

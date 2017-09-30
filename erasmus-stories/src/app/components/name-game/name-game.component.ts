@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
+import {GameService} from "../../services/game.service";
+import {User} from "../../entities/User";
 
 @Component({
   selector: 'app-name-game',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NameGameComponent implements OnInit {
 
-  constructor() { }
+  private user: User;
+  private showPicture: boolean = true;
+
+  constructor(private gameService: GameService) {
+  }
 
   ngOnInit() {
+    this.user = this.gameService.getNextUserForCard();
   }
+
+  showSolution() {
+    this.showPicture = false;
+  }
+
+  showNextCard() {
+    this.user = this.gameService.getNextUserForCard();
+    this.showPicture = true;
+  }
+
+
+
 
 }

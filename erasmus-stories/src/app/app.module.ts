@@ -18,7 +18,11 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
 
-import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '@angular/material';
+import {MatCardModule, MatIconModule, MatSidenavModule, MatToolbarModule} from "@angular/material";
+import {GameCardComponent} from "./components/name-game/game-card/game-card.component";
+import {StoryService} from "./services/story.service";
+import {UserService} from "./services/user.service";
+import {GameService} from "./services/game.service";
 
 
 @NgModule({
@@ -31,7 +35,8 @@ import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '
     FlipCardComponent,
     ChatComponent,
     StoryComponent,
-    SignUpComponent
+    SignUpComponent,
+    GameCardComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '
     MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule,
     routing
   ],
-  providers: [],
+  providers: [GameService, UserService, StoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
