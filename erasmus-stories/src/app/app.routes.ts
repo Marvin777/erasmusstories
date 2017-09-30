@@ -6,7 +6,8 @@ import {NameGameComponent} from "./components/name-game/name-game.component";
 const APP_ROUTES: Routes = [
   {path:'', component:StoryListComponent},
   {path:'login', component:LogInComponent},
-  {path:'game', component:NameGameComponent}
+  {path:'game', component:NameGameComponent},
+  {path:'login', component:LogInComponent}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
