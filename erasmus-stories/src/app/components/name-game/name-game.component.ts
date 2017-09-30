@@ -19,7 +19,6 @@ export class NameGameComponent implements OnInit {
   ngOnInit() {
     this.user = this.gameService.getNextUserForCard();
     this.nameList = this.gameService.getNameOptions(this.user);
-    console.log("afddsafs" + this.nameList.toString());
   }
 
   showSolution() {
@@ -29,6 +28,7 @@ export class NameGameComponent implements OnInit {
   showNextCard(selected: String) {
     if (this.user.name == selected) {
       this.gameService.choseCorrectly(this.user.id);
+      console.log("CORRECT")
     }
     this.user = this.gameService.getNextUserForCard();
     this.showPicture = true;
