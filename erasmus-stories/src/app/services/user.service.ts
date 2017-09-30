@@ -11,7 +11,7 @@ export class UserService {
 
 
   private urlPath: string = "https://www.schoenheit2go.at/wp-content/uploads/2014/10/frau-mit-schoenen-haaren.jpg";
-  private loggedInUser: User = new User(0, "Stephie", "f", "Germany", "Dortmund", this.urlPath, "text text text", 0, 0, [], [], []); //defaultWert
+  private loggedInUser: User;
 
   private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/students.json";
 
