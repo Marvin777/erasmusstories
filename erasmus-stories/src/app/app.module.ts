@@ -23,6 +23,8 @@ import {GameCardComponent} from "./components/name-game/game-card/game-card.comp
 import {StoryService} from "./services/story.service";
 import {UserService} from "./services/user.service";
 import {GameService} from "./services/game.service";
+import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, MatMenuModule} from '@angular/material';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -46,7 +48,7 @@ import {GameService} from "./services/game.service";
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule,
+    MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, BrowserAnimationsModule, MatMenuModule,
     routing
   ],
   providers: [GameService, UserService, StoryService],

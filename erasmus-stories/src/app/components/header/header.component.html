@@ -1,6 +1,28 @@
-<md-toolbar>
-  <md-icon>menu</md-icon>
-  <md-icon>assignment_ind</md-icon>
-  <md-icon>notifications</md-icon>
-  <md-icon>library_books</md-icon>
-</md-toolbar>
+
+
+  <md-toolbar>
+    <md-icon (click)="sidenav.toggle()">menu</md-icon>
+
+    <md-icon (click)="onNavigate('game')">assignment_ind</md-icon>
+
+      <md-icon (click)="onNavigate('/')">library_books</md-icon>
+
+
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>notifications</md-icon>
+      </button>
+    <md-menu #menu="mdMenu">
+      Hier notificationene
+    </md-menu>
+  </md-toolbar>
+
+  <md-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
+    Profile
+    <br>
+    your stories
+    <br>
+    mesajes
+  </md-sidenav>
+
+
+
