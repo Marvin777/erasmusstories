@@ -18,6 +18,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
+import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
