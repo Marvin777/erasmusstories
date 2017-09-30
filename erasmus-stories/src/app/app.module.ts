@@ -30,8 +30,10 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatButtonToggleModule,
+  MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {DataService} from "./services/dataService";
 
 
 @NgModule({
@@ -45,7 +47,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent,
+    GameCardComponent
   ],
   imports: [
     BrowserModule,
@@ -64,12 +66,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    MatTooltipModule,
     MatButtonToggleModule,
 
     routing
   ],
-  providers: [GameService, UserService, StoryService],
+  providers: [GameService, UserService, StoryService, DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

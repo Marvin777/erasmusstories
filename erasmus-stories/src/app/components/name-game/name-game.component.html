@@ -1,13 +1,19 @@
 <div *ngIf="showPicture">
-  <md-card class="example-card">
+  <md-card>
     <md-card-header>
-      <md-card-title>Who is this?</md-card-title>
+      <md-card-title>
+        <span>Who is this?</span> &nbsp; &nbsp; &nbsp; &nbsp;
+        <div style="float: right;">score:{{loggedInUser?.gameScore}}</div>
+      </md-card-title>
     </md-card-header>
     <img md-card-image [src]="user?.url">
     <md-card-actions>
-      <button md-button *ngFor="let name of nameList" (click)="showNextCard(name)">{{name}}</button>
+      <button md-raised-button color="primary" *ngFor="let name of nameList" (click)="showSolution(name)">{{name}}
+      </button>
     </md-card-actions>
   </md-card>
 </div>
 
-<app-game-card *ngIf="!showPicture" [user]="user" (click)="showNextCard()"></app-game-card>
+<div *ngIf="!showPicture">
+  <app-game-card [user]="user" (clicked)="showNextCard()"></app-game-card>
+</div>
