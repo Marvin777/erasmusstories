@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import _ from 'lodash';
+import loremIpsum from 'lorem-ipsum';
+import * as _ from 'lodash';
 const MOCK_STORIES: Object[]=[{
   id: _.uniqueId('story_'),
-  authorID: _.uniqueId('user_'),
-  text: "test story, mega Awesome"
+  authorUserId: _.uniqueId('user_'),
+  text: loremIpsum(500),
+  date: new Date("February 4, 2016 10:13:00")
 }];
 @Component({
   selector: 'app-story-list',
@@ -13,7 +15,9 @@ const MOCK_STORIES: Object[]=[{
 export class StoryListComponent implements OnInit {
   title = "New Stories";
   stories = MOCK_STORIES;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
