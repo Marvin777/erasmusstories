@@ -50,7 +50,8 @@ import {DataService} from "./services/dataService";
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent
+    GameCardComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
