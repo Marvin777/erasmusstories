@@ -32,6 +32,9 @@ import {
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthService} from "app/services/auth.service";
+import {UserGuard} from "./components/user-guard.service";
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 
 @NgModule({
@@ -45,7 +48,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent
+    GameCardComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatTooltipModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService],
+  providers: [GameService, UserService, StoryService, AuthService, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,11 +2,14 @@ import {RouterModule, Routes} from "@angular/router";
 import {StoryListComponent} from "./components/story-list/story-list.component";
 import {LogInComponent} from "./components/log-in/log-in.component";
 import {NameGameComponent} from "./components/name-game/name-game.component";
+import {UserGuard} from "./components/user-guard.service";
+
+import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 const APP_ROUTES: Routes = [
-  {path:'', component:StoryListComponent},
-  {path:'login', component:LogInComponent},
-  {path:'game', component:NameGameComponent},
+  {path:'', component: WelcomeComponent},
+  {path:'story', component:StoryListComponent, canActivate: [UserGuard]},
+  {path:'game', component:NameGameComponent, canActivate: [UserGuard]},
   {path:'login', component:LogInComponent}
 ];
 
