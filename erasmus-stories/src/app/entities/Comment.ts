@@ -1,4 +1,4 @@
-export class Story {
+export class Comment {
 
   constructor(public id: string,
               public authorUserId: string,
