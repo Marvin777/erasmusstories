@@ -12,6 +12,10 @@ import { FlipCardComponent } from './flip-card/flip-card.component';
 import { ChatComponent } from './chat/chat.component';
 import { StoryComponent } from './story/story.component';
 import {SignUpComponent} from "./sign-up/sign-up.component";
+import {AngularFireModule} from "angularfire2";
+import {environment} from "../environments/environment";
+import {AngularFireAuthModule} from "angularfire2/auth";
+import {AngularFireDatabaseModule} from "angularfire2/database";
 
 @NgModule({
   declarations: [
@@ -28,6 +32,9 @@ import {SignUpComponent} from "./sign-up/sign-up.component";
   imports: [
     BrowserModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     HttpModule
   ],
   providers: [],
