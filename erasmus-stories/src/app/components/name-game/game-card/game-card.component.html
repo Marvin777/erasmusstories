@@ -1,18 +1,31 @@
-<md-card class="example-card">
+<md-card>
   <md-card-header>
     <img md-card-avatar [src]="user?.url"/>
-    <md-card-title>{{user?.name}}</md-card-title>
+    <md-card-title>
+      <span>{{user?.name}}</span>
+      <div style="float: right;">score: {{loggedInUser?.gameScore}}</div>
+
+    </md-card-title>
     <md-card-subtitle>{{user?.country}}, {{user?.city}}</md-card-subtitle>
   </md-card-header>
-  <img md-card-image src="assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <md-card-content>
-    <p>
-      TExt text text
-    </p>
+    <p>{{user?.description}}</p>
+    <div class="button-row">
+      <button mdTooltip="Add on facebook" md-icon-button class="btn btn-app" color="primary">
+        <md-icon>public</md-icon>
+      </button>
+      <button mdTooltip="Chat" md-icon-button class="btn btn-app" color="primary">
+        <md-icon>chat_bubble_outline</md-icon>
+      </button>
+      <button mdTooltip="Stories" md-icon-button class="btn btn-app" color="primary">
+        <md-icon>library_books</md-icon>
+      </button>
+    </div>
+    <div class="button-row">
+      <button md-mini-fab (click)="onNextClick()" style="float: right;">
+        <md-icon>navigate_next</md-icon>
+      </button>
+    </div>
+    <div style="height:50px;"></div>
   </md-card-content>
-  <md-card-actions>
-    <button md-raised-button color="primary">ADD ON FB</button>
-    <button md-raised-button color="primary">CHAT</button>
-    <button md-raised-button color="primary">STORIES</button>
-  </md-card-actions>
 </md-card>

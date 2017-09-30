@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {User} from "../../../entities/User";
+import {UserService} from "../../../services/user.service";
 
 @Component({
   selector: 'app-game-card',
@@ -9,11 +10,19 @@ import {User} from "../../../entities/User";
 export class GameCardComponent implements OnInit {
 
   @Input() private user: User;
+  @Output() clicked = new EventEmitter<string>();
+  private loggedInUser: User;
 
-  constructor() {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
+    this.loggedInUser = this.userService.getLoggedInUser();
+  }
+
+  onNextClick() {
+    console.log("nextnext");
+    this.clicked.emit("next");
   }
 
 }

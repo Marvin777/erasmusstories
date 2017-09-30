@@ -1,17 +1,17 @@
 <md-toolbar color="primary">
-  <button md-icon-button (click)="sidenav.toggle()">
-    <i class="material-icons">menu</i>
-  </button>
-  <button md-icon-button (click)="onNavigate('game')">
-  <i class="material-icons">assignment_ind</i>
-  </button>
+  <button md-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
+  <button md-icon-button (click)="onNavigate('game')"><i class="material-icons">assignment_ind</i></button>
   <button md-icon-button (click)="onNavigate('/')"><i class="material-icons">library_books</i></button>
   <button md-icon-button [mdMenuTriggerFor]="menu"><i class="material-icons">notifications</i></button>
 
   <md-menu #menu="mdMenu" yPosition="below">
     <span>Hier notificationene</span>
   </md-menu>
-  </md-toolbar>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <h1>Erasmus Stories</h1>
+
+</md-toolbar>
 
   <md-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
     Profile
