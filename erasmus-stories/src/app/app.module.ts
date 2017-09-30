@@ -18,12 +18,18 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
 
-import {MatCardModule, MatIconModule, MatSidenavModule, MatToolbarModule} from "@angular/material";
 import {GameCardComponent} from "./components/name-game/game-card/game-card.component";
 import {StoryService} from "./services/story.service";
 import {UserService} from "./services/user.service";
 import {GameService} from "./services/game.service";
-import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, MatMenuModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
@@ -44,11 +50,19 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserModule,
     FormsModule,
     RouterModule,
+    HttpModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule,
-    MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule, BrowserAnimationsModule, MatMenuModule,
+
+    MatToolbarModule,
+    MatCardModule,
+    MatIconModule,
+    MatSidenavModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
     routing
   ],
   providers: [GameService, UserService, StoryService],

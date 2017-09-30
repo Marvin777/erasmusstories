@@ -1,6 +1,13 @@
-<p>
-  name-game works!
-</p>
+<div *ngIf="showPicture">
+  <md-card class="example-card">
+    <md-card-header>
+      <md-card-title>Who is this?</md-card-title>
+    </md-card-header>
+    <img md-card-image [src]="user?.url">
+    <md-card-actions>
+      <button md-button *ngFor="let name of nameList" (click)="showNextCard(name)">{{name}}</button>
+    </md-card-actions>
+  </md-card>
+</div>
 
-<img [src]="user?.url" *ngIf="showPicture" style="max-height: 75px; max-width: 75px;" (click)="showSolution()">
 <app-game-card *ngIf="!showPicture" [user]="user" (click)="showNextCard()"></app-game-card>

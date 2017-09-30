@@ -27,13 +27,15 @@ export class GameService {
    */
   getNameOptions(user: User): Array<String>{
       //getAllUsernamesWithGender user.gender //TODO firebase
-      let genderBasedUsernameList = ["Sina", "Sarah", "Nadine", "Elena", "Mary"];
+    let genderBasedUsernameList = ["Sina", "Sarah", "Nadja", "Elena", "Mary"];
 
       let nameList = [];
-      Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
-      Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
-      Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
-      return nameList;
+    //Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
+    //Array.prototype.push.apply(nameList, genderBasedUsernameList[this.getRandomInt(genderBasedUsernameList.length)]);
+    //Array.prototype.push.apply(nameList, user.name);
+
+    //return nameList;
+    return genderBasedUsernameList
   }
 
 

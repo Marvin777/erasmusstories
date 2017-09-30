@@ -10,6 +10,7 @@ import {User} from "../../entities/User";
 export class NameGameComponent implements OnInit {
 
   private user: User;
+  private nameList = [];
   private showPicture: boolean = true;
 
   constructor(private gameService: GameService) {
@@ -17,13 +18,18 @@ export class NameGameComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.gameService.getNextUserForCard();
+    this.nameList = this.gameService.getNameOptions(this.user);
+    console.log("afddsafs" + this.nameList.toString());
   }
 
   showSolution() {
     this.showPicture = false;
   }
 
-  showNextCard() {
+  showNextCard(selected: String) {
+    if (this.user.name == selected) {
+      this.gameService.choseCorrectly(this.user.id);
+    }
     this.user = this.gameService.getNextUserForCard();
     this.showPicture = true;
   }
