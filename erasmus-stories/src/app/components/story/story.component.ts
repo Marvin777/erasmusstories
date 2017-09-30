@@ -7,9 +7,9 @@ import {Story} from "../../entities/Story";
   styleUrls: ['./story.component.css']
 })
 export class StoryComponent implements OnInit {
-  @Input()
-  private story: Story;
-  constructor() { }
+  @Input() private story: Story;
+  constructor() {
+  }
 
   ngOnInit() {
   }
