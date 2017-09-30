@@ -1,3 +1,4 @@
-<p>
-  story-list works!
-</p>
+<h1>Story-list works! {{title}}</h1>
+<div *ngFor="let story of stories">
+  {{story.text}}
+</div>
