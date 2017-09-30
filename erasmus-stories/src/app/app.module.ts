@@ -20,7 +20,6 @@ import {RouterModule} from "@angular/router";
 import {routing} from "./app.routes";
 import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '@angular/material';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +40,7 @@ import {MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule} from '
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    routing
+    routing, MatToolbarModule, MatCardModule, MatIconModule, MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
