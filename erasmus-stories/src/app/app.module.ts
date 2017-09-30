@@ -28,7 +28,8 @@ import {
   MatIconModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatButtonToggleModule,
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -44,7 +45,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent
+    GameCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,9 +64,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
+    MatButtonToggleModule,
+
     routing
   ],
   providers: [GameService, UserService, StoryService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
