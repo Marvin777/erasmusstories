@@ -1,9 +1,10 @@
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable, Output} from "@angular/core";
 import * as _ from "lodash";
 import loremIpsum from 'lorem-ipsum';
 import {Http} from "@angular/http";
-import {AngularFireDatabase} from "angularfire2/database";
+import {AngularFireDatabase, FirebaseObjectObservable} from "angularfire2/database";
 import {Story} from "../entities/Story";
+import {Observable} from "rxjs/Observable";
 
 const MOCK_STORIES: Story[] = [{
   id: _.uniqueId('story_'),
@@ -14,16 +15,16 @@ const MOCK_STORIES: Story[] = [{
   voteUpUsers: [],
   voteDownUsers: [],
   comments: []
-}, {
-  id: _.uniqueId('story_'),
-  authorUserId: 4,
-  text: loremIpsum(500),
-  date: new Date("September 29, 2016 11:13:00"),
-  scoring: 9,
-  voteUpUsers: [],
-  voteDownUsers: [],
-  comments: []
-},
+  }, {
+    id: _.uniqueId('story_'),
+    authorUserId: 4,
+    text: loremIpsum(500),
+    date: new Date("September 29, 2016 11:13:00"),
+    scoring: 9,
+    voteUpUsers: [],
+    voteDownUsers: [],
+    comments: []
+  },
   {
     id: _.uniqueId('story_'),
     authorUserId: 6,
@@ -58,20 +59,37 @@ const MOCK_STORIES: Story[] = [{
 
 @Injectable()
 export class StoryService {
-  stories: Story[];
+  stories: Story[] = [];
+  //For reading
+  itemsObservable: Observable<Story[]>;
+  //For writing
+  itemsRef: FirebaseObjectObservable<any>;
+  otherStories: Story[];
+  @Output() initialized = new EventEmitter();
 
 
   constructor(private http: Http, private database: AngularFireDatabase) {
-    this.stories = MOCK_STORIES;
-    this.fetchData().subscribe((data) =>
-      this.onSuccess(data));
-    this.storeData();
+    this.initData();
   }
 
-
-  onSuccess(stories: any[]) {
-    console.log(stories);
+  saveData() {
+    let itemsRef = this.database.object('stories');
+    itemsRef.set(this.stories);
   }
+
+  initData() {
+    let itemsRef = this.database.object('stories');
+    itemsRef.set(MOCK_STORIES);
+  }
+
+  getData() {
+    let itemsObservable = this.database.list('stories');
+    itemsObservable.subscribe(storyItems => {
+      storyItems.forEach(storyItem => this.stories.push(storyItem));
+      this.initialized.emit();
+    });
+  }
+
 
   //@todo Server Connection
   getStories(): Story[] {
@@ -92,8 +110,9 @@ export class StoryService {
       }
     }
   }
-  getStory(storyId: string){
-    return this.stories.find(story => story.id ===storyId)
+
+  getStory(storyId: string) {
+    return this.stories.find(story => story.id === storyId)
   }
 
   getVoteUps(storyId: string) {
@@ -115,19 +134,7 @@ export class StoryService {
   }
 
   getVoteDowns(storyId: string) {
+    //this.itemsObservable.
     return this.stories.find(story => story.id === storyId).voteDownUsers.length;
-  }
-
-  fetchData() {
-    return this.http.get('https://erasmusstories-f269c.firebaseio.com/stories.json').map(response => response.json());
-  }
-
-  storeData() {
-    this.fetchData().subscribe((data) =>
-      this.onSuccess(data));
-    this.database.object('/stories').remove();
-    const body = JSON.stringify(this.stories);
-    const header = new Headers({'Content-Type': 'application/json'});
-    return this.http.post('https://erasmusstories-f269c.firebaseio.com/stories.json', body);
   }
 }

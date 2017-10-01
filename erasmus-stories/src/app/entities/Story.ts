@@ -6,10 +6,11 @@ export class Story {
               public text: string,
               //Firstly optional
              // public picture: string,
-              public comments: Comment[],
               public scoring: number,
               public voteUpUsers: number[],
-              public voteDownUsers: number[]
+              public voteDownUsers: number[],
+
+              public comments: Comment[],
     ) {
   }
 
