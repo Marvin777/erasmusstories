@@ -6,6 +6,7 @@ import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
 import {User} from "../entities/User";
 import {UserService} from "./user.service";
+
 @Injectable()
 export class AuthService {
 provider= new firebase.auth.FacebookAuthProvider();
@@ -39,8 +40,15 @@ provider= new firebase.auth.FacebookAuthProvider();
     this.userService.logout();
   }
   isAuthenticated(): Observable< boolean > {
+    firebase.auth().getRedirectResult().then(function (result) {
+      if (result.credential) {
+        let token = result.credential.accessToken;
+      }
+      let user = result.user;
+    }).catch(function (error) {
+    });
     const state = new Subject<boolean>();
-    this.afAuth.auth.onAuthStateChanged( function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
         state.next(true);
