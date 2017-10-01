@@ -9,17 +9,13 @@ import {DataService} from "./dataService";
 @Injectable()
 export class UserService {
 
-
-  private urlPath: string = "https://www.schoenheit2go.at/wp-content/uploads/2014/10/frau-mit-schoenen-haaren.jpg";
   private loggedInUser: User;
-
   private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/students.json";
-
   private users = [];
 
   constructor(private http: Http, private database: AngularFireDatabase, private router: Router, private dataService: DataService) {
     this.initData();
-    this.fetchData().subscribe((data) => console.log("fetched"));
+    this.fetchData().subscribe((data) => console.log("fetched")); //TODO mapping
   }
 
   initData() {
@@ -45,9 +41,9 @@ export class UserService {
     //loggedInUser setzen//TODO
   }
 
-  logout() { //TODO button
+  logout() {
     this.loggedInUser = null;
-    this.router.navigate(["login"]);
+    this.router.navigate(['login']);
   }
 
   getUser(userID: number): User {
