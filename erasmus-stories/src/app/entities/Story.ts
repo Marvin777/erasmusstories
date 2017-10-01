@@ -1,7 +1,7 @@
 export class Story {
 
   constructor(public id: string,
-              public authorUserId: string,
+              public authorUserId: number,
               public date: Date,
               public text: string,
               //Firstly optional

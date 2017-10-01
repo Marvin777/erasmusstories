@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Story} from "../../entities/Story";
 import {StoryService} from "../../services/story.service";
 import {UserService} from "../../services/user.service";
+import {User} from "../../entities/User";
 
 @Component({
   selector: 'app-story',
@@ -11,12 +12,13 @@ import {UserService} from "../../services/user.service";
 export class StoryComponent implements OnInit {
   @Input() private story: Story;
   userId: number;
+  author: User;
   //Which Thumb is selected?
   thumbSelected: string;
-  scoring:number;
-  constructor(private storyService: StoryService, private userService: UserService) {
+  scoring: number;
 
-   }
+  constructor(private storyService: StoryService, private userService: UserService) {
+  }
 
   toggleVote(value: string) {
     if (value == "thumbUp") {
@@ -32,6 +34,7 @@ export class StoryComponent implements OnInit {
     if (this.story.voteDownUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbDown";
     else if (this.story.voteUpUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbUp";
     this.scoring = this.story.scoring;
+    this.author = this.userService.getUser(this.story.authorUserId);
   }
 
 }
