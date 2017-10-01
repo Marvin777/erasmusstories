@@ -28,9 +28,13 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatButtonToggleModule,
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthService} from "app/services/auth.service";
+import {UserGuard} from "./components/user-guard.service";
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import {DataService} from "./services/dataService";
 import {NotificationService} from "./services/notification.service";
 import {ProfileComponent} from "./components/profile/profile.component";
@@ -43,9 +47,12 @@ import {ProfileComponent} from "./components/profile/profile.component";
     HeaderComponent,
     StoryListComponent,
     NameGameComponent,
+    FlipCardComponent,
     ChatComponent,
     StoryComponent,
     SignUpComponent,
+    GameCardComponent,
+    WelcomeComponent,
     GameCardComponent,
     ProfileComponent
   ],
@@ -67,10 +74,12 @@ import {ProfileComponent} from "./components/profile/profile.component";
     MatMenuModule,
     MatButtonModule,
     MatTooltipModule,
+    MatButtonToggleModule,
+
     MatMenuModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, DataService, NotificationService],
+  providers: [GameService, UserService, StoryService, DataService, NotificationService, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

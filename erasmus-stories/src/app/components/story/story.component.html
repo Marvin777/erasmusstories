@@ -4,12 +4,18 @@
     <md-card-subtitle>{{story.date}}</md-card-subtitle>
   </md-card-header>
   <md-card-content>
-    <button md-icon-button color="primary">
-      <md-icon>thumb_up</md-icon>
-    </button>
-    <button md-icon-button color="primary">
-      <md-icon>thumb_down</md-icon>
-    </button>
+    <p>{{story.scoring}}</p>
+    <md-button-toggle-group value="thumbSelected" #group="mdButtonToggleGroup" (change)="toggleVote(group.value)">
+      <md-button-toggle value="thumbUp">
+        <md-icon color="primary">thumb_up</md-icon>
+      </md-button-toggle>
+
+      <md-button-toggle value="thumbDown">
+        <md-icon color="primary">thumb_down</md-icon>
+      </md-button-toggle>
+    </md-button-toggle-group>
+    <div>
+    </div>
     <p>
       {{story.text}}
     </p>

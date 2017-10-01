@@ -5,9 +5,11 @@ export class Story {
               public date: Date,
               public text: string,
               //Firstly optional
-              public picture: string,
-              public comments: Comment,
+             // public picture: string,
+              public comments: Comment[],
               public scoring: number,
+              public voteUpUsers: number[],
+              public voteDownUsers: number[]
     ) {
   }
 
