@@ -17,7 +17,23 @@ export class UserService {
   @Output() usersInitialized = new EventEmitter();
 
   constructor(private http: Http, private database: AngularFireDatabase, private dataService: DataService) {
-    this.initData();
+    this.fetchData().subscribe(
+      (users: User[]) => {
+        if (users != null) {
+          this.users = users;
+          this.loggedInUser = users[0];
+          this.usersInitialized.emit();
+          console.log("[UserService] retrieved " + this.users.length + " users");
+          this.getData();
+        }
+      });
+
+    this.getData();
+  }
+
+  fetchData() {
+    return this.http.get(this.databaseUrl).map(response => response.json());
+
   }
 
   getData() {
@@ -25,11 +41,11 @@ export class UserService {
     this.userObservable = this.database.list('students');
     this.userObservable.subscribe(items => {
       items.forEach(item => {
-        this.users.push(item);
+        if (!this.users.includes(item)) {
+          this.users.push(item);
+        }
       });
-      console.log("[UserService] retrieved " + this.users.length + " users");
       this.loggedInUser = this.users[0];
-      this.usersInitialized.emit();
     });
   }
 
@@ -41,9 +57,9 @@ export class UserService {
 
 
   saveData() {
-    this.database.object('/students').remove();
-    const itemRef = this.database.object('students');
-    itemRef.set(this.users);
+    //this.database.object('/students').remove();
+    //const itemRef = this.database.object('students');
+    //itemRef.set(this.users);
   }
 
   saveChangesForLoggedInUser() {
