@@ -3,7 +3,6 @@ import * as firebase from "firebase/app";
 import * as firebaseui from "firebaseui";
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -37,14 +36,13 @@ export class LogInComponent implements OnInit {
 
 
   private ui = new firebaseui.auth.AuthUI(firebase.auth());
-  private subscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+
     this.ui.delete();
 
   }

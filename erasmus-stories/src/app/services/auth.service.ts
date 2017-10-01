@@ -50,6 +50,7 @@ provider= new firebase.auth.FacebookAuthProvider();
     const state = new Subject<boolean>();
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
+        console.log(user);
         // User is signed in.
         state.next(true);
       }else {
