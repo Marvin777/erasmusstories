@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from "@angular/core";
 import {Story} from "../../entities/Story";
 import {StoryService} from "../../services/story.service";
 import {UserService} from "../../services/user.service";
@@ -12,36 +12,53 @@ import {Router} from "@angular/router";
 })
 export class StoryComponent implements OnInit {
   @Input() private story: Story;
-  userId: number;
   author: User;
-  //Which Thumb is selected?
+  userId: number;
   thumbSelected: string;
-  scoring: number;
 
   constructor(private storyService: StoryService, private userService: UserService, private router: Router) {
   }
 
-  toggleVote(value: string) {
-    if (value == "thumbUp") {
-      this.storyService.voteUp(this.story.id, this.userId)
-    } else {
-      this.storyService.voteDown(this.story.id, this.userId);
-    }
-  }
-  openDetail(story: Story){
-    this.router.navigate(['/storyDetail', { story: story.id}]);
+  toogleVote(value: string) {
+    this.toggle(value);
+    this.story.scoring = this.story.voteUpUsers.length + 2 - this.story.voteDownUsers.length;
   }
 
+  toggle(value: string) {
+    if (this.story.voteDownUsers.includes(this.userId)) {
+      this.story.voteDownUsers.pop();
+      this.thumbSelected = "";
+      return;
+    }
+    if (this.story.voteUpUsers.includes(this.userId)) {
+      this.story.voteUpUsers.pop();
+      this.thumbSelected = "";
+      return;
+    }
+
+    if (value == "thumbUp") {
+      this.story.voteUpUsers.push(this.userId);
+    } else {
+      this.story.voteDownUsers.push(this.userId);
+    }
+  }
+
+
   ngOnInit() {
-    //@todo no update on user logout
-    this.userId = 2;
-    if (this.story.voteDownUsers && this.story.voteDownUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbDown";
-    else if (this.story.voteUpUsers && this.story.voteUpUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbUp";
-    this.scoring = this.story.scoring;
-    if(this.userService.getLoggedInUser()!=null){
-      this.author = this.userService.getUser(this.story.authorUserId);
-    }else{
-      this.userService.usersInitialized.subscribe(()=> this.author = this.userService.getUser(this.story.authorUserId));
+    this.author = this.userService.getUser(this.story.authorUserId);
+    this.userId = this.userService.getLoggedInUser().id;
+    if (!this.story.voteDownUsers) {
+      this.story.voteDownUsers = [];
+    }
+    if (!this.story.voteUpUsers) {
+      this.story.voteUpUsers = [];
+    }
+
+    if (this.story.voteDownUsers.includes(this.userId)) {
+      this.thumbSelected = "thumbDown";
+    }
+    else if (this.story.voteUpUsers.includes(this.userId)) {
+      this.thumbSelected = "thumbUp";
     }
   }
 
