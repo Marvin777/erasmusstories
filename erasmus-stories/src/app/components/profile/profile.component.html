@@ -1,0 +1,28 @@
+<md-card>
+  <md-card-header>
+    <md-card-title>
+      That's you!
+    </md-card-title>
+    <md-card-subtitle>{{user?.name}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <img md-card-avatar [src]="user?.url"/>
+    <p>{{user?.description}}</p>
+    <p>{{user?.country}}, {{user?.city}}</p>
+
+    <p>Your gameScore: {{user?.gameScore}}</p>
+    <p>Your storyScore: {{user?.storyScore}}</p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      ----
+    </p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {{user?.gameScore+user?.storyScore}}
+    </p>
+  </md-card-content>
+</md-card>

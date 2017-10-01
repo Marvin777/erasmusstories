@@ -10,25 +10,29 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
-  isAuthenticated=false;
-  constructor(private router: Router, private authService:AuthService) {
-    this.authService.isAuthenticated().subscribe(
-      authStatus=> this.isAuthenticated=authStatus)
-  }
-onLogout()
-{
-  this.authService.logout();
-  this.isAuthenticated=false;
-}
 
   private notifications: UserNotification[] = [];
+  private isAuthenticated: boolean = false;
 
-  constructor(private router: Router, private userService: UserService, private notificationService: NotificationService) {
+  constructor(private router: Router,
+              private authService: AuthService,
+              private userService: UserService,
+              private notificationService: NotificationService) {
+    this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
+
     this.notifications = this.notificationService.getNotificationsOfUser(this.userService.getLoggedInUser().id);
     this.notificationService.newNotification.subscribe(
       (notifications: UserNotification[]) => this.notifications = notifications
     );
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.isAuthenticated = false;
+
+    this.userService.logout();
   }
 
   ngOnInit() {
@@ -37,7 +41,4 @@ onLogout()
     this.router.navigate([s]);
   }
 
-  onLogout() {
-    this.userService.logout();
-  }
 }
