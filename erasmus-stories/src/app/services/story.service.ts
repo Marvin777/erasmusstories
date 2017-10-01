@@ -15,16 +15,16 @@ const MOCK_STORIES: Story[] = [{
   voteUpUsers: [],
   voteDownUsers: [],
   comments: []
-  }, {
-    id: _.uniqueId('story_'),
-    authorUserId: 4,
-    text: loremIpsum(500),
-    date: new Date("September 29, 2016 11:13:00"),
-    scoring: 9,
-    voteUpUsers: [],
-    voteDownUsers: [],
-    comments: []
-  },
+}, {
+  id: _.uniqueId('story_'),
+  authorUserId: 4,
+  text: loremIpsum(500),
+  date: new Date("September 29, 2016 11:13:00"),
+  scoring: 9,
+  voteUpUsers: [],
+  voteDownUsers: [],
+  comments: []
+},
   {
     id: _.uniqueId('story_'),
     authorUserId: 6,
@@ -69,7 +69,7 @@ export class StoryService {
 
 
   constructor(private http: Http, private database: AngularFireDatabase) {
-    this.initData();
+    this.getData();
   }
 
   saveData() {

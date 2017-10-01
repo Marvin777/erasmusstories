@@ -9,7 +9,7 @@ import {DataService} from "./dataService";
 export class UserService {
 
   private loggedInUser: User;
-  private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/students2.json";
+  private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/students.json";
   private users = [];
 
   private userObservable;
