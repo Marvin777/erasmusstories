@@ -20,7 +20,11 @@ export class NameGameComponent implements OnInit {
 
 
   ngOnInit() {
-    this.userService.usersInitialized.subscribe(() => this.initGame());
+    if (this.userService.getLoggedInUser() == null) {
+      this.userService.usersInitialized.subscribe(() => this.initGame());
+    } else {
+      this.initGame();
+    }
   }
 
   initGame() {
@@ -30,7 +34,7 @@ export class NameGameComponent implements OnInit {
       this.nameList = this.gameService.getNameOptions(this.user);
       console.log("[NameGameComp] start Game")
     }
-    
+
   }
 
   showSolution(selected: String) {
