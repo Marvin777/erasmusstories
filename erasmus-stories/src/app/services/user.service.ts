@@ -13,17 +13,17 @@ export class UserService {
   private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/students.json";
   private users = [];
 
+
   constructor(private http: Http, private database: AngularFireDatabase, private router: Router, private dataService: DataService) {
     this.initData();
-    this.fetchData().subscribe((data) => console.log("fetched")); //TODO mapping
+    this.fetchData().subscribe(
+      (users: User[]) => {
+        this.users = users;
+      });
   }
 
   initData() {
     this.users = this.dataService.getUsers();
-    this.loggedInUser = this.users[0];
-  }
-
-  saveData() {
     this.storeData().subscribe();
   }
 
