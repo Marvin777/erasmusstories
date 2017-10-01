@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -10,7 +11,7 @@ import * as firebaseui from 'firebaseui';
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-  provider = new firebase.auth.FacebookAuthProvider();
+
     uiConfig = {
     signInSuccessUrl: 'story',
       callbacks: {
@@ -32,22 +33,26 @@ export class LogInComponent implements OnInit {
         'user_friends'
         ]}
   };
+  // Initialize the FirebaseUI Widget using Firebase.
+  ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+  constructor(private authService: AuthService) {
 
-  constructor(private afAuth: AngularFireAuth) {
   }
 
   ngOnInit() {
-    // Initialize the FirebaseUI Widget using Firebase.
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
     // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', this.uiConfig);
+    this.ui.start('#firebaseui-auth-container', this.uiConfig);
   }
   login() {
-    this.afAuth.auth.signInWithRedirect(this.provider);
+    this.authService.login();
   }
   logout() {
-    this.afAuth.auth.signOut();
+    this.authService.logout()
+  }
+  ngOnDestroy() {
+    this.ui.reset();
+
   }
 
 }

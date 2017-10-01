@@ -35,34 +35,13 @@ provider= new firebase.auth.FacebookAuthProvider();
   }
   logout() {
     this.afAuth.auth.signOut();
-    this.router.navigate(['signin']);
+    this.router.navigate(['login']);
   }
   isAuthenticated(): Observable< boolean > {
     const state = new Subject<boolean>();
     this.afAuth.auth.onAuthStateChanged( function(user) {
       if (user) {
         // User is signed in.
-        let displayName = user.displayName;
-        let email = user.email;
-        let emailVerified = user.emailVerified;
-        let photoURL = user.photoURL;
-        let uid = user.uid;
-        let phoneNumber = user.phoneNumber;
-        let providerData = user.providerData;
-        user.getIdToken().then(function(accessToken) {
-          document.getElementById('sign-in-status').textContent = 'Signed in';
-          document.getElementById('sign-in').textContent = 'Sign out';
-          document.getElementById('account-details').textContent = JSON.stringify({
-            displayName: displayName,
-            email: email,
-            emailVerified: emailVerified,
-            phoneNumber: phoneNumber,
-            photoURL: photoURL,
-            uid: uid,
-            accessToken: accessToken,
-            providerData: providerData
-          }, null, '  ');
-        });
         state.next(true);
       }else {
         state.next(false);

@@ -8,8 +8,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 const APP_ROUTES: Routes = [
   {path:'', component: WelcomeComponent},
-  {path:'story', component:StoryListComponent, canActivate: [UserGuard]},
-  {path:'game', component:NameGameComponent, canActivate: [UserGuard]},
+  {path:'story', component:StoryListComponent},
+  {path:'game', component:NameGameComponent},
   {path:'login', component:LogInComponent}
 ];
 
