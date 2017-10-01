@@ -19,6 +19,7 @@ export class StoryComponent implements OnInit {
   scoring: number;
 
   constructor(private storyService: StoryService, private userService: UserService, private router: Router) {
+    console.log(this.story.id);
   }
 
   toggleVote(value: string) {
@@ -35,8 +36,8 @@ export class StoryComponent implements OnInit {
   ngOnInit() {
     //@todo no update on user logout
     this.userId = 2;
-    if (this.story.voteDownUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbDown";
-    else if (this.story.voteUpUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbUp";
+    if (this.story.voteDownUsers && this.story.voteDownUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbDown";
+    else if (this.story.voteUpUsers && this.story.voteUpUsers.indexOf(this.userId) !== -1) this.thumbSelected = "thumbUp";
     this.scoring = this.story.scoring;
     this.author = this.userService.getUser(this.story.authorUserId);
   }

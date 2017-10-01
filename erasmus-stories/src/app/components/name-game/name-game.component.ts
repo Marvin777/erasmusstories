@@ -13,15 +13,22 @@ export class NameGameComponent implements OnInit {
   private user: User;
   private nameList = [];
   private showPicture: boolean = true;
-  private loggedInUser: User;
-  constructor(private gameService: GameService, private userService: UserService) {
+  private loggedInUser: User = null;
+  private started: boolean = false;
+
+  constructor(private userService: UserService, private gameService: GameService) {
   }
 
 
   ngOnInit() {
+    this.userService.usersInitialized.subscribe(() => this.initGame());
+  }
+
+  initGame() {
+    console.log("[NameGameComp] start Game")
+    this.loggedInUser = this.userService.getLoggedInUser();
     this.user = this.gameService.getNextUserForCard();
     this.nameList = this.gameService.getNameOptions(this.user);
-    this.loggedInUser = this.userService.getLoggedInUser();
   }
 
   showSolution(selected: String) {
@@ -32,7 +39,6 @@ export class NameGameComponent implements OnInit {
   }
 
   showNextCard() {
-    console.log("NEXT");
     this.user = this.gameService.getNextUserForCard();
     this.nameList = this.gameService.getNameOptions(this.user);
     this.showPicture = true;

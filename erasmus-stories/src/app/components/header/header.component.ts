@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     // this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
 
     this.notificationService.newNotification.subscribe(
-      (notifications: UserNotification[]) => this.notifications = notifications
+      () => this.notifications = this.notificationService.getNotificationsOfLoggedInUser()
     );
   }
 
