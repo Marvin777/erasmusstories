@@ -39,7 +39,6 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {DataService} from "./services/dataService";
 import {NotificationService} from "./services/notification.service";
 import {ProfileComponent} from "./components/profile/profile.component";
-import {StoryDetailComponent} from "./components/story-detail/story-detail.component";
 
 
 @NgModule({
@@ -55,8 +54,7 @@ import {StoryDetailComponent} from "./components/story-detail/story-detail.compo
     GameCardComponent,
     WelcomeComponent,
     GameCardComponent,
-    ProfileComponent,
-    StoryDetailComponent
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

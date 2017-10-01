@@ -17,7 +17,8 @@ export class UserService {
   @Output() usersInitialized = new EventEmitter();
 
   constructor(private http: Http, private database: AngularFireDatabase, private dataService: DataService) {
-    this.fetchData().subscribe(
+    this.initData();
+    /** this.fetchData().subscribe(
       (users: User[]) => {
         if (users != null) {
           this.users = users;
@@ -28,7 +29,7 @@ export class UserService {
         }
       });
 
-    this.getData();
+     this.getData();**/
   }
 
   fetchData() {
