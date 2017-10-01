@@ -1,5 +1,6 @@
 import {RouterModule, Routes} from "@angular/router";
 import {StoryListComponent} from "./components/story-list/story-list.component";
+import {LogInComponent} from "./components/log-in/log-in.component";
 import {NameGameComponent} from "./components/name-game/name-game.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 
