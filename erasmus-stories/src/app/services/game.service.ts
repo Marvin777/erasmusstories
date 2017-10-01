@@ -14,11 +14,10 @@ export class GameService {
     let nextID = 0;
     do {
       nextID = this.getRandomInt(this.userService.getHighestID());
-      console.log("next:" + nextID);
     } while (loggedInUser.hasGuessedRight.includes(nextID));
 
     loggedInUser.hasSeen.push(nextID);
-    this.userService.saveChangesForLoggedInUser();
+    //this.userService.saveChangesForLoggedInUser();
 
     return this.userService.getUser(nextID);
   }
@@ -50,6 +49,7 @@ export class GameService {
     if (loggedInUser.gameScore == 5) {
       this.notificationService.createGameScoreAwardNotificationForUser(loggedInUser.id, loggedInUser.gameScore);
     }
+    console.log("save " + loggedInUser.name);
     this.userService.saveChangesForLoggedInUser();
   }
 

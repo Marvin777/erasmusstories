@@ -15,6 +15,9 @@
         <md-icon>{{mssg?.icon}}</md-icon>
         <span>{{mssg?.message}}</span>
       </button>
+      <button *ngIf="notifications.length == 0" md-menu-item disabled>
+        <span>You have 0 notifications</span>
+      </button>
     </div>
   </md-menu>
 
