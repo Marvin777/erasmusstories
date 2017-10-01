@@ -57,14 +57,13 @@ export class UserService {
 
 
   saveData() {
-    //this.database.object('/students').remove();
-    //const itemRef = this.database.object('students');
-    //itemRef.set(this.users);
+    this.database.object('/students').remove();
+    const itemRef = this.database.object('students');
+    itemRef.set(this.users);
   }
 
   saveChangesForLoggedInUser() {
     this.users[this.loggedInUser.id] = this.loggedInUser;
-    console.log("save");
     this.saveData();
   }
 
