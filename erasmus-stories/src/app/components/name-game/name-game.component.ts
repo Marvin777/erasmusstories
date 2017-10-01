@@ -14,7 +14,6 @@ export class NameGameComponent implements OnInit {
   private nameList = [];
   private showPicture: boolean = true;
   private loggedInUser: User = null;
-  private started: boolean = false;
 
   constructor(private userService: UserService, private gameService: GameService) {
   }
@@ -25,10 +24,13 @@ export class NameGameComponent implements OnInit {
   }
 
   initGame() {
-    console.log("[NameGameComp] start Game")
     this.loggedInUser = this.userService.getLoggedInUser();
-    this.user = this.gameService.getNextUserForCard();
-    this.nameList = this.gameService.getNameOptions(this.user);
+    if (this.loggedInUser != null) {
+      this.user = this.gameService.getNextUserForCard();
+      this.nameList = this.gameService.getNameOptions(this.user);
+      console.log("[NameGameComp] start Game")
+    }
+    
   }
 
   showSolution(selected: String) {
