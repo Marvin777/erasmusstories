@@ -1,8 +1,8 @@
 <md-card class="card">
   <div>
     <md-card-header>
-      <img md-card-avatar [src]="(author| async)?.url"/>
-      <md-card-title>{{(author| async)?.name}}</md-card-title>
+      <img md-card-avatar [src]="author?.url"/>
+      <md-card-title>{{author?.name}}</md-card-title>
       <md-card-subtitle>{{story.date}}</md-card-subtitle>
     </md-card-header>
     <md-card-content class="contentNVoting">
