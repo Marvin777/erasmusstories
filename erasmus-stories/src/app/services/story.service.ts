@@ -35,7 +35,7 @@ const MOCK_STORIES: Story[] = [{
     comments: []
   },
   {
-    id:  _.uniqueId('story_'),
+    id: _.uniqueId('story_'),
     authorUserId: 7,
     text: loremIpsum(500),
     date: new Date("September 30, 2016 17:13:00"),
@@ -63,28 +63,28 @@ export class StoryService {
 
   constructor(private http: Http, private database: AngularFireDatabase) {
     this.stories = MOCK_STORIES;
+    this.fetchData().subscribe((data) =>
+      this.onSuccess(data));
+    this.storeData();
   }
 
-  /*
-        this.fetchData().subscribe((data) =>
-          this.onSuccess(data));
-      }
-      onSuccess(exchangeStudent: any[]) {
 
-      } */
+  onSuccess(stories: any[]) {
+    console.log(stories);
+  }
 
   //@todo Server Connection
-  getStories() : Story[] {
+  getStories(): Story[] {
     return this.stories;
   }
 
-  voteUp(storyId: string, userId: number):boolean {
-    let votedStory :Story;
-    votedStory= this.stories.find(story => story.id === storyId);
+  voteUp(storyId: string, userId: number): boolean {
+    let votedStory: Story;
+    votedStory = this.stories.find(story => story.id === storyId);
     if (votedStory) {
-      if(votedStory.voteUpUsers.indexOf(userId)!== -1){
+      if (votedStory.voteUpUsers.indexOf(userId) !== -1) {
         return false;
-      }else{
+      } else {
         votedStory.voteUpUsers.push(userId);
         //console.log(votedStory.voteUpUsers);
         votedStory.scoring++;
@@ -92,39 +92,42 @@ export class StoryService {
       }
     }
   }
-  getVoteUps(storyId: string){
+  getStory(storyId: string){
+    return this.stories.find(story => story.id ===storyId)
+  }
+
+  getVoteUps(storyId: string) {
     return this.stories.find(story => story.id === storyId).voteUpUsers.length;
   }
 
-  voteDown(storyId: string, userId: number):boolean {
+  voteDown(storyId: string, userId: number): boolean {
     const votedStory = this.stories.find(story => story.id === storyId);
     if (votedStory) {
-      if(votedStory.voteDownUsers.indexOf(userId)!== -1){
+      if (votedStory.voteDownUsers.indexOf(userId) !== -1) {
         return false;
-      }else{
-       // console.log(votedStory.voteDownUsers);
+      } else {
+        // console.log(votedStory.voteDownUsers);
         votedStory.voteDownUsers.push(userId);
         votedStory.scoring--;
         return true;
       }
     }
   }
-  getVoteDowns(storyId: string){
+
+  getVoteDowns(storyId: string) {
     return this.stories.find(story => story.id === storyId).voteDownUsers.length;
   }
 
   fetchData() {
-    // return this.http.get('https://projektarbeit-fb86a.firebaseio.com/stories.json').map(response => response.json());
+    return this.http.get('https://erasmusstories-f269c.firebaseio.com/stories.json').map(response => response.json());
   }
 
-  /*  storeData() {
-      this.fetchData().subscribe((data) =>
-        this.onSuccess(data));
-      this.database.object('/localstudents').remove();
-      const body = JSON.stringify(this.localStudents);
-      const headers = new Headers({'Content-Type': 'application/json'});
-      return this.http.post('https://projektarbeit-fb86a.firebaseio.com/stories.json', body, {
-        headers: headers
-      });
-    }*/
+  storeData() {
+    this.fetchData().subscribe((data) =>
+      this.onSuccess(data));
+    this.database.object('/stories').remove();
+    const body = JSON.stringify(this.stories);
+    const header = new Headers({'Content-Type': 'application/json'});
+    return this.http.post('https://erasmusstories-f269c.firebaseio.com/stories.json', body);
+  }
 }

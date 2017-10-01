@@ -11,12 +11,14 @@ import {Story} from "../../entities/Story";
   styleUrls: ['./story-detail.component.css'],
   providers: [StoryService],
 })
-export class StoryListComponent implements OnInit {
-  @Input() private story:Story;
-  constructor(storyService: StoryService) {
+export class StoryDetailComponent implements OnInit {
+  @Input() private storyId:string;
+  story: Story;
+  constructor(private storyService: StoryService) {
   }
 
   ngOnInit() {
+    this.story = this.storyService.getStory(this.storyId);
   }
 }
 

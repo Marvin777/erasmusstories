@@ -12,7 +12,6 @@ import {Story} from "../../entities/Story";
   providers: [StoryService],
 })
 export class StoryListComponent implements OnInit {
-  title = "New Stories";
   stories: Story[];
   constructor(storyService: StoryService) {
     this.stories = storyService.getStories();
