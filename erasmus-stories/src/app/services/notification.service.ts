@@ -16,11 +16,13 @@ export class NotificationService {
   @Output() newNotification = new EventEmitter<UserNotification[]>();
 
   constructor(private http: Http, private database: AngularFireDatabase, private userService: UserService) {
-    this.loggedInUser = this.userService.getLoggedInUser();
+    //this.loggedInUser = this.userService.getLoggedInUser();
     this.fetchData().subscribe(
       (notifications: UserNotification[]) => {
         this.notifications = notifications;
-        this.newNotification.emit(this.getNotificationsOfUser(this.loggedInUser.id));
+        //  if(this.loggedInUser!=null) {
+        //    this.newNotification.emit(this.getNotificationsOfUser(this.loggedInUser.id))
+        //  };
       });
   }
 

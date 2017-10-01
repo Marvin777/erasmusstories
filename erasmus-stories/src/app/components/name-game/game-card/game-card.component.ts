@@ -26,7 +26,7 @@ export class GameCardComponent implements OnInit {
   }
 
   showUserStories() {
-    this.userService.saveData();
+    //TODO:
   }
 
 }

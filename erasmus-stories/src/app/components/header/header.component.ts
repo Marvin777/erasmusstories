@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
               private notificationService: NotificationService) {
     this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
 
-    this.notifications = this.notificationService.getNotificationsOfUser(this.userService.getLoggedInUser().id);
     this.notificationService.newNotification.subscribe(
       (notifications: UserNotification[]) => this.notifications = notifications
     );

@@ -24,10 +24,6 @@ export class UserService {
 
   initData() {
     this.users = this.dataService.getUsers();
-    this.loggedInUser = this.users[0];
-  }
-
-  saveData() {
     this.storeData().subscribe();
   }
 
