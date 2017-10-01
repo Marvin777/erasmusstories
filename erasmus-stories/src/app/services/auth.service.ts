@@ -36,6 +36,7 @@ provider= new firebase.auth.FacebookAuthProvider();
   logout() {
     this.afAuth.auth.signOut();
     this.router.navigate(['login']);
+    this.userService.logout();
   }
   isAuthenticated(): Observable< boolean > {
     const state = new Subject<boolean>();

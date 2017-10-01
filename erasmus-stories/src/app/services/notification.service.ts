@@ -16,17 +16,22 @@ export class NotificationService {
   @Output() newNotification = new EventEmitter<UserNotification[]>();
 
   constructor(private http: Http, private database: AngularFireDatabase, private userService: UserService) {
-    //this.loggedInUser = this.userService.getLoggedInUser();
+    this.loggedInUser = this.userService.getLoggedInUser();
     this.fetchData().subscribe(
       (notifications: UserNotification[]) => {
-        this.notifications = notifications;
-        //  if(this.loggedInUser!=null) {
-        //    this.newNotification.emit(this.getNotificationsOfUser(this.loggedInUser.id))
-        //  };
+        if (notifications != null) {
+          this.notifications = notifications;
+          if (this.loggedInUser != null) {
+            this.newNotification.emit(this.getNotificationsOfUser(this.loggedInUser.id))
+          }
+        }
       });
   }
 
   getNotificationsOfUser(userId: number): UserNotification[] {
+    if (this.notifications == null) {
+      return [];
+    }
     return this.notifications.filter(mssg => {
       return userId == mssg.userId;
     });
@@ -53,8 +58,8 @@ export class NotificationService {
   }
 
   storeData() {
-    this.database.object('/notifications').remove();
     const body = JSON.stringify(this.notifications);
+    this.database.object('/notifications').remove();
     const headers = new Headers({'Content-Type': 'application/json'});
     return this.http.post(this.databaseUrl, body);
   }

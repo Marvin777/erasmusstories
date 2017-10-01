@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {AngularFireAuth} from "angularfire2/auth";
-import * as firebase from 'firebase/app';
-import * as firebaseui from 'firebaseui';
+import {Component, OnInit} from "@angular/core";
+import * as firebase from "firebase/app";
+import * as firebaseui from "firebaseui";
 import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {AuthService} from "../../services/auth.service";
 export class LogInComponent implements OnInit {
 
     uiConfig = {
-    signInSuccessUrl: 'story',
+      signInSuccessUrl: 'login',
       callbacks: {
         'signInSuccess': function(user, credential, redirectUrl) {
           if (window.opener) {
@@ -33,26 +34,33 @@ export class LogInComponent implements OnInit {
         'user_friends'
         ]}
   };
-  // Initialize the FirebaseUI Widget using Firebase.
-  ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-  constructor(private authService: AuthService) {
 
+  private ui = new firebaseui.auth.AuthUI(firebase.auth());
+  private subscription: Subscription;
+
+  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.ui.delete();
+
+  }
   ngOnInit() {
-    // The start method will wait until the DOM is loaded.
+    console.log("3");
     this.ui.start('#firebaseui-auth-container', this.uiConfig);
+    console.log("afterinit");
   }
+
+
   login() {
     this.authService.login();
   }
+
   logout() {
-    this.authService.logout()
+    this.authService.logout();
+    this.ui.delete();
   }
-  ngOnDestroy() {
-    this.ui.reset();
-
-  }
-
 }

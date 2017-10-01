@@ -25,6 +25,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule,
+  MatDialogModule,
   MatIconModule,
   MatMenuModule,
   MatSidenavModule,
@@ -74,6 +75,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
     MatButtonModule,
     MatTooltipModule,
     MatButtonToggleModule,
+    MatDialogModule,
 
     MatMenuModule,
     routing

@@ -1,15 +1,18 @@
 <md-card>
   <md-card-header>
-    <img md-card-avatar [src]="user?.url"/>
+    <img md-card-lg-image="" avatar style="float:left" [src]="user?.url"/>
     <md-card-title>
       {{user?.name}}
-      score: {{loggedInUser?.gameScore}}
-
     </md-card-title>
-    <md-card-subtitle>{{user?.country}}, {{user?.city}}</md-card-subtitle>
+    <md-card-subtitle>
+      <p>{{user?.country}}, {{user?.city}}</p>
+      <p>{{user?.description}}</p>
+    </md-card-subtitle>
   </md-card-header>
   <md-card-content>
-    <p>{{user?.description}}</p>
+    <br>
+    <br>
+    <h4>Your score: {{loggedInUser?.gameScore}}</h4>
     <div class="button-row">
       <button mdTooltip="Add on facebook" md-icon-button class="btn btn-app" color="primary">
         <md-icon>public</md-icon>

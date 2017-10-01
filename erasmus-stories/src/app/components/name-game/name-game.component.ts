@@ -14,7 +14,6 @@ export class NameGameComponent implements OnInit {
   private nameList = [];
   private showPicture: boolean = true;
   private loggedInUser: User;
-
   constructor(private gameService: GameService, private userService: UserService) {
   }
 
@@ -29,7 +28,6 @@ export class NameGameComponent implements OnInit {
     this.showPicture = false;
     if (this.user.name == selected) {
       this.gameService.choseCorrectly(this.user.id);
-      console.log("CORRECT")
     }
   }
 

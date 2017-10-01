@@ -11,10 +11,10 @@ export class GameService {
 
   getNextUserForCard(): User {
     let loggedInUser = this.userService.getLoggedInUser();
-
     let nextID = 0;
     do {
       nextID = this.getRandomInt(this.userService.getHighestID());
+      console.log("next:" + nextID);
     } while (loggedInUser.hasGuessedRight.includes(nextID));
 
     loggedInUser.hasSeen.push(nextID);
@@ -40,14 +40,14 @@ export class GameService {
 
 
   private getRandomInt(max:number) : number{
-    return Math.floor(Math.random() * max);
+    return Math.floor(Math.random() * (max));
   }
 
   choseCorrectly(userID: number){
     let loggedInUser = this.userService.getLoggedInUser();
     loggedInUser.hasGuessedRight.push(userID);
     loggedInUser.gameScore+=1;
-    if (loggedInUser.gameScore == 10) {
+    if (loggedInUser.gameScore == 5) {
       this.notificationService.createGameScoreAwardNotificationForUser(loggedInUser.id, loggedInUser.gameScore);
     }
     this.userService.saveChangesForLoggedInUser();

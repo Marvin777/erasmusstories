@@ -11,9 +11,14 @@ export class GameCardComponent implements OnInit {
 
   @Input() private user: User;
   @Output() clicked = new EventEmitter<string>();
+  private solutionText: string;
   private loggedInUser: User;
 
   constructor(private userService: UserService) {
+  }
+
+  setSolutionText(text: string) {
+    this.solutionText = text;
   }
 
   ngOnInit() {

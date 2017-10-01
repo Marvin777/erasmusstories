@@ -14,13 +14,13 @@ import {AuthService} from "../../services/auth.service";
 export class HeaderComponent implements OnInit {
 
   private notifications: UserNotification[] = [];
-  private isAuthenticated: boolean = false;
+  private isAuthenticated: boolean = true;
 
   constructor(private router: Router,
               private authService: AuthService,
               private userService: UserService,
               private notificationService: NotificationService) {
-    this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
+    // this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
 
     this.notificationService.newNotification.subscribe(
       (notifications: UserNotification[]) => this.notifications = notifications
@@ -31,9 +31,7 @@ export class HeaderComponent implements OnInit {
     if (this.isAuthenticated) {
       this.authService.logout();
       this.isAuthenticated = false;
-      this.userService.logout();
     }
-    this.onNavigate('login');
   }
 
   ngOnInit() {
