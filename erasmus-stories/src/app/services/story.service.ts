@@ -7,7 +7,7 @@ import {Story} from "../entities/Story";
 
 const MOCK_STORIES: Story[] = [{
   id: _.uniqueId('story_'),
-  authorUserId: _.uniqueId('user_'),
+  authorUserId: 2,
   text: loremIpsum(500),
   date: new Date("September 30, 2017 10:13:00"),
   scoring: 2,
@@ -16,7 +16,7 @@ const MOCK_STORIES: Story[] = [{
   comments: []
 }, {
   id: _.uniqueId('story_'),
-  authorUserId: _.uniqueId('user_'),
+  authorUserId: 4,
   text: loremIpsum(500),
   date: new Date("September 29, 2016 11:13:00"),
   scoring: 9,
@@ -26,7 +26,7 @@ const MOCK_STORIES: Story[] = [{
 },
   {
     id: _.uniqueId('story_'),
-    authorUserId: _.uniqueId('user_'),
+    authorUserId: 6,
     text: loremIpsum(500),
     date: new Date("September 30, 2016 15:13:00"),
     scoring: 2,
@@ -35,8 +35,8 @@ const MOCK_STORIES: Story[] = [{
     comments: []
   },
   {
-    id: _.uniqueId('story_'),
-    authorUserId: _.uniqueId('user_'),
+    id:  _.uniqueId('story_'),
+    authorUserId: 7,
     text: loremIpsum(500),
     date: new Date("September 30, 2016 17:13:00"),
     scoring: 2,
@@ -46,7 +46,7 @@ const MOCK_STORIES: Story[] = [{
   },
   {
     id: _.uniqueId('story_'),
-    authorUserId: _.uniqueId('user_'),
+    authorUserId: 8,
     text: loremIpsum(500),
     date: new Date("September 30, 2016 13:13:00"),
     scoring: 6,

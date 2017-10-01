@@ -1,0 +1,18 @@
+md-card {
+  max-width: 300px;
+}
+.card {
+  display:flex
+}
+.votingBox{
+  flex:1 1 35px;
+  display: flex;
+  min-width: 35px;
+  height: 120px;
+  flex-direction: column;
+  align-items: center;
+}
+.contentNVoting{
+  display: flex;
+  flex-direction: row-reverse;
+}
