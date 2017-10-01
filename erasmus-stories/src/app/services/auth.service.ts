@@ -9,7 +9,7 @@ import {UserService} from "./user.service";
 
 @Injectable()
 export class AuthService {
-provider= new firebase.auth.FacebookAuthProvider();
+  private provider = new firebase.auth.FacebookAuthProvider();
 
   constructor(private router: Router, public afAuth: AngularFireAuth, private userService: UserService) {
   }
@@ -32,9 +32,11 @@ provider= new firebase.auth.FacebookAuthProvider();
       0,0,[],[],[]
       );
     this.userService.signIn(user);
+    console.log(curUser);
 
   }
   logout() {
+    console.log(this.afAuth.auth);
     this.afAuth.auth.signOut();
     this.router.navigate(['login']);
     this.userService.logout();
