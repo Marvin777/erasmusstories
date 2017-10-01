@@ -7,7 +7,6 @@ import {LogInComponent} from "./components/log-in/log-in.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {StoryListComponent} from "./components/story-list/story-list.component";
 import {NameGameComponent} from "./components/name-game/name-game.component";
-import {FlipCardComponent} from "./components/flip-card/flip-card.component";
 import {ChatComponent} from "./components/chat/chat.component";
 import {StoryComponent} from "./components/story/story.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
@@ -24,19 +23,21 @@ import {UserService} from "./services/user.service";
 import {GameService} from "./services/game.service";
 import {
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatIconModule,
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatButtonToggleModule,
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthService} from "app/services/auth.service";
 import {UserGuard} from "./components/user-guard.service";
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {DataService} from "./services/dataService";
+import {NotificationService} from "./services/notification.service";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 
 @NgModule({
@@ -46,12 +47,13 @@ import {DataService} from "./services/dataService";
     HeaderComponent,
     StoryListComponent,
     NameGameComponent,
-    FlipCardComponent,
     ChatComponent,
     StoryComponent,
     SignUpComponent,
     GameCardComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    GameCardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +75,10 @@ import {DataService} from "./services/dataService";
     MatTooltipModule,
     MatButtonToggleModule,
 
+    MatMenuModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, AuthService, UserGuard, DataService],
+  providers: [GameService, UserService, StoryService, DataService, NotificationService, UserGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
