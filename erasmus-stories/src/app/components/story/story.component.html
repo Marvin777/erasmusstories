@@ -12,8 +12,8 @@
 
   </md-card-content>
   </div>
-  <md-button-toggle-group class="votingBox" value="thumbSelected?" #group="mdButtonToggleGroup"
-                          (change)="toggleVote(group.value)">
+  <md-button-toggle-group class="votingBox" [value]="thumbSelected" #group="mdButtonToggleGroup"
+                          (change)="toogleVote(group.value)">
     <md-button-toggle value="thumbUp">
       <md-icon color="primary">thumb_up</md-icon>
     </md-button-toggle>

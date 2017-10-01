@@ -75,7 +75,7 @@ export class StoryService {
         if (stories != null) {
           this.stories = stories;
           console.log("[StoryService] retrieved " + this.stories.length + " stories");
-          this.initialized.emit();
+          this.getData();
         }
       });
 
@@ -110,51 +110,31 @@ export class StoryService {
     });
   }
 
-
-  //@todo Server Connection
   getStories(): Story[] {
     return this.stories;
   }
 
-  voteUp(storyId: string, userId: number): boolean {
-    let votedStory: Story;
-    votedStory = this.stories.find(story => story.id === storyId);
-    if (votedStory) {
-      if (votedStory.voteUpUsers.indexOf(userId) !== -1) {
-        return false;
-      } else {
-        votedStory.voteUpUsers.push(userId);
-        //console.log(votedStory.voteUpUsers);
-        votedStory.scoring++;
-        return true;
+  voteUp(story: Story, userId: number) {
+    if (!story.voteUpUsers.includes(userId)) {
+      story.voteUpUsers.push(userId);
+      if (story.voteDownUsers.includes(userId)) {
+        story.voteDownUsers.pop()
       }
+    } else {
+      story.voteUpUsers.pop()
+      }
+    }
+
+  voteDown(story: Story, userId: number) {
+    if (!story.voteDownUsers.includes(userId)) {
+      story.voteDownUsers.push(userId);
+      if (story.voteUpUsers.includes(userId)) {
+        story.voteUpUsers.pop()
+      }
+    } else {
+      story.voteDownUsers.pop()
     }
   }
 
-  getStory(storyId: string) {
-    return this.stories.find(story => story.id === storyId)
-  }
 
-  getVoteUps(storyId: string) {
-    return this.stories.find(story => story.id === storyId).voteUpUsers.length;
-  }
-
-  voteDown(storyId: string, userId: number): boolean {
-    const votedStory = this.stories.find(story => story.id === storyId);
-    if (votedStory) {
-      if (votedStory.voteDownUsers.indexOf(userId) !== -1) {
-        return false;
-      } else {
-        // console.log(votedStory.voteDownUsers);
-        votedStory.voteDownUsers.push(userId);
-        votedStory.scoring--;
-        return true;
-      }
-    }
-  }
-
-  getVoteDowns(storyId: string) {
-    //this.itemsObservable.
-    return this.stories.find(story => story.id === storyId).voteDownUsers.length;
-  }
 }
