@@ -9,7 +9,7 @@ import {Observable} from "rxjs/Observable";
 const MOCK_STORIES: Story[] = [{
   id: _.uniqueId('story_'),
   authorUserId: 2,
-  text: loremIpsum(500),
+  text: "Does somebody wants to join me for a hiking tour in the Mountains nearby?",
   date: new Date("September 30, 2017 10:13:00"),
   scoring: 2,
   voteUpUsers: [],
@@ -18,7 +18,7 @@ const MOCK_STORIES: Story[] = [{
 }, {
   id: _.uniqueId('story_'),
   authorUserId: 4,
-  text: loremIpsum(500),
+  text: "Does somebody know a free apartement in wonderful and beautiful",
   date: new Date("September 29, 2016 11:13:00"),
   scoring: 9,
   voteUpUsers: [],
@@ -28,7 +28,7 @@ const MOCK_STORIES: Story[] = [{
   {
     id: _.uniqueId('story_'),
     authorUserId: 6,
-    text: loremIpsum(500),
+    text: "Yesterday I met this funny guy in Figge, how showed some magic tricks. The last one went wrong and he burned my shirt. Never trust a magician",
     date: new Date("September 30, 2016 15:13:00"),
     scoring: 2,
     voteUpUsers: [],
@@ -38,7 +38,7 @@ const MOCK_STORIES: Story[] = [{
   {
     id: _.uniqueId('story_'),
     authorUserId: 7,
-    text: loremIpsum(500),
+    text: 'What is the name of this tall ESN guy with the beard?!',
     date: new Date("September 30, 2016 17:13:00"),
     scoring: 2,
     voteUpUsers: [],
@@ -48,7 +48,7 @@ const MOCK_STORIES: Story[] = [{
   {
     id: _.uniqueId('story_'),
     authorUserId: 8,
-    text: loremIpsum(500),
+    text: "Next Trip: Barcelona or Madrid?",
     date: new Date("September 30, 2016 13:13:00"),
     scoring: 6,
     voteUpUsers: [],
