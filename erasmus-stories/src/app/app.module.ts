@@ -23,18 +23,18 @@ import {UserService} from "./services/user.service";
 import {GameService} from "./services/game.service";
 import {
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatIconModule,
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatButtonToggleModule,
   MatTooltipModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthService} from "app/services/auth.service";
 import {UserGuard} from "./components/user-guard.service";
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {DataService} from "./services/dataService";
 import {NotificationService} from "./services/notification.service";
 import {ProfileComponent} from "./components/profile/profile.component";
@@ -47,7 +47,6 @@ import {ProfileComponent} from "./components/profile/profile.component";
     HeaderComponent,
     StoryListComponent,
     NameGameComponent,
-    FlipCardComponent,
     ChatComponent,
     StoryComponent,
     SignUpComponent,
@@ -79,7 +78,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
     MatMenuModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, DataService, NotificationService, UserGuard],
+  providers: [GameService, UserService, StoryService, DataService, NotificationService, UserGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
