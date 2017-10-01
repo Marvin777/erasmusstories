@@ -1,6 +1,6 @@
 <md-toolbar color="primary">
-  <md-toolbar-row><h1>Erasmus Stories</h1></md-toolbar-row>
-  <md-toolbar-row>  <div>
+  <h1>Erasmus Stories</h1><br>
+  <div *ngIf="isAuthenticated">
     <button md-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
     <button md-icon-button (click)="onNavigate('game')"><i class="material-icons">account_circle</i></button>
     <button md-icon-button (click)="onNavigate('story')"><i class="material-icons">library_books</i></button>
@@ -19,10 +19,6 @@
         </button>
       </div>
     </md-menu>
-  </md-toolbar-row>
-
-
-
 
 
   &nbsp;&nbsp;&nbsp;&nbsp;

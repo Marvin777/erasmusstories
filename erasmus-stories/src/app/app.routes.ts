@@ -6,7 +6,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 
 const APP_ROUTES: Routes = [
   {path: '', component: StoryListComponent},
-  //{path: 'login', component: LogInComponent},
+  {path: 'login', component: LogInComponent},
   {path: 'story', component: StoryListComponent}, //canActivate: [UserGuard]},
   {path: 'game', component: NameGameComponent}, //canActivate: [UserGuard]},
   {path: 'profile', component: ProfileComponent}//, canActivate: [UserGuard]}
