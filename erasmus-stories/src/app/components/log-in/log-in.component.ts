@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import * as firebase from "firebase/app";
 import * as firebaseui from "firebaseui";
 import {AuthService} from "../../services/auth.service";
@@ -10,10 +10,10 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent implements OnInit, OnDestroy {
 
     uiConfig = {
-      signInSuccessUrl: 'login',
+      signInSuccessUrl: '/',
       callbacks: {
         'signInSuccess': function(user, credential, redirectUrl) {
           if (window.opener) {
@@ -35,8 +35,7 @@ export class LogInComponent implements OnInit {
   };
 
 
-  private ui = new firebaseui.auth.AuthUI(firebase.auth());
-
+  private ui;
   constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
@@ -47,6 +46,7 @@ export class LogInComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.ui = new firebaseui.auth.AuthUI(firebase.auth());
     console.log("3");
     this.ui.start('#firebaseui-auth-container', this.uiConfig);
     console.log("afterinit");
