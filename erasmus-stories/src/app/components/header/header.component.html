@@ -5,7 +5,12 @@
   <button md-icon-button [mdMenuTriggerFor]="menu"><i class="material-icons">notifications</i></button>
 
   <md-menu #menu="mdMenu" yPosition="below">
-    <span>Hier notificationene</span>
+    <div *ngFor="let mssg of notifications">
+      <button md-menu-item disabled>
+        <md-icon>{{mssg?.icon}}</md-icon>
+        <span>{{mssg?.message}}</span>
+      </button>
+    </div>
   </md-menu>
 
   &nbsp;&nbsp;&nbsp;&nbsp;
@@ -14,11 +19,27 @@
 </md-toolbar>
 
   <md-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
-    Profile
-    <br>
-    Your stories
-    <br>
-    Chat
+
+    <button md-menu-item (click)="onNavigate('profile')">
+      <md-icon>settings</md-icon>
+      <span>Your profile</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>library_books</md-icon>
+      <span>Your stories</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>insert_emoticon</md-icon>
+      <span>Your awards</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>chat_bubble_outline</md-icon>
+      <span>Chat</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>power_settings_new</md-icon>
+      <span>Log out</span>
+    </button>
   </md-sidenav>
 
 

@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {UserService} from "./user.service";
 import {User} from "../entities/User";
+import {NotificationService} from "./notification.service";
 
 @Injectable()
 export class GameService {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private notificationService: NotificationService) {
   }
 
   getNextUserForCard(): User {
@@ -46,6 +47,9 @@ export class GameService {
     let loggedInUser = this.userService.getLoggedInUser();
     loggedInUser.hasGuessedRight.push(userID);
     loggedInUser.gameScore+=1;
+    if (loggedInUser.gameScore == 10) {
+      this.notificationService.createGameScoreAwardNotificationForUser(loggedInUser.id, loggedInUser.gameScore);
+    }
     this.userService.saveChangesForLoggedInUser();
   }
 

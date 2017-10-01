@@ -7,7 +7,6 @@ import {LogInComponent} from "./components/log-in/log-in.component";
 import {HeaderComponent} from "./components/header/header.component";
 import {StoryListComponent} from "./components/story-list/story-list.component";
 import {NameGameComponent} from "./components/name-game/name-game.component";
-import {FlipCardComponent} from "./components/flip-card/flip-card.component";
 import {ChatComponent} from "./components/chat/chat.component";
 import {StoryComponent} from "./components/story/story.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
@@ -33,6 +32,8 @@ import {
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DataService} from "./services/dataService";
+import {NotificationService} from "./services/notification.service";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 
 @NgModule({
@@ -42,11 +43,11 @@ import {DataService} from "./services/dataService";
     HeaderComponent,
     StoryListComponent,
     NameGameComponent,
-    FlipCardComponent,
     ChatComponent,
     StoryComponent,
     SignUpComponent,
-    GameCardComponent
+    GameCardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -66,9 +67,10 @@ import {DataService} from "./services/dataService";
     MatMenuModule,
     MatButtonModule,
     MatTooltipModule,
+    MatMenuModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, DataService],
+  providers: [GameService, UserService, StoryService, DataService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
