@@ -82,7 +82,7 @@ import {StoryDetailComponent} from "./components/story-detail/story-detail.compo
     MatMenuModule,
     routing
   ],
-  providers: [GameService, UserService, StoryService, DataService, NotificationService, UserGuard, AuthService],
+  providers: [UserService, GameService, StoryService, DataService, NotificationService, UserGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

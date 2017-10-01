@@ -16,26 +16,40 @@ export class NotificationService {
   @Output() newNotification = new EventEmitter<UserNotification[]>();
 
   constructor(private http: Http, private database: AngularFireDatabase, private userService: UserService) {
-    this.loggedInUser = this.userService.getLoggedInUser();
-    this.fetchData().subscribe(
-      (notifications: UserNotification[]) => {
-        if (notifications != null) {
-          this.notifications = notifications;
-          if (this.loggedInUser != null) {
-            this.newNotification.emit(this.getNotificationsOfUser(this.loggedInUser.id))
-          }
-        }
-      });
+    this.getData();
+    this.userService.usersInitialized.subscribe(() => this.initNotifications());
   }
 
-  getNotificationsOfUser(userId: number): UserNotification[] {
-    if (this.notifications == null) {
+  getData() {
+    let observable = this.database.list('notifications');
+    observable.subscribe(items => {
+      items.forEach(item => {
+        this.notifications.push(item);
+      });
+      this.newNotification.emit();
+    });
+  }
+
+  saveData() {
+    const itemRef = this.database.object('notifications');
+    itemRef.set(this.notifications);
+  }
+
+  initNotifications() {
+    console.log("[NotificationService] init Notifications ")
+    this.loggedInUser = this.userService.getLoggedInUser();
+    this.newNotification.emit()
+  }
+
+  getNotificationsOfLoggedInUser() {
+    if (this.loggedInUser == null) {
       return [];
     }
     return this.notifications.filter(mssg => {
-      return userId == mssg.userId;
+      return this.loggedInUser.id == mssg.userId;
     });
   }
+
 
 
   createGameScoreAwardNotificationForUser(userId: number, gameScore: number) {
@@ -48,21 +62,11 @@ export class NotificationService {
     );
     this.notifications.push(mssg);
     if (this.loggedInUser.id == userId) {
-      this.newNotification.emit(this.getNotificationsOfUser(userId));
+      this.newNotification.emit();
     }
-    this.storeData().subscribe();
+    this.saveData();
   }
 
-  fetchData() {
-    return this.http.get(this.databaseUrl).map(response => response.json());
-  }
-
-  storeData() {
-    const body = JSON.stringify(this.notifications);
-    this.database.object('/notifications').remove();
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return this.http.post(this.databaseUrl, body);
-  }
 
 
 }
