@@ -1,0 +1,25 @@
+<md-card class="card">
+  <div>
+    <md-card-header>
+      <img md-card-avatar [src]="author?.url"/>
+      <md-card-title>{{author.name}}</md-card-title>
+      <md-card-subtitle>{{story.date}}</md-card-subtitle>
+    </md-card-header>
+    <md-card-content class="contentNVoting">
+      <p>
+        {{story.text}}
+      </p>
+
+  </md-card-content>
+  </div>
+  <md-button-toggle-group class="votingBox" value="thumbSelected?" #group="mdButtonToggleGroup"
+                          (change)="toggleVote(group.value)">
+    <md-button-toggle value="thumbUp">
+      <md-icon color="primary">thumb_up</md-icon>
+    </md-button-toggle>
+    <p>{{story.scoring}}</p>
+    <md-button-toggle value="thumbDown">
+      <md-icon color="primary">thumb_down</md-icon>
+    </md-button-toggle>
+  </md-button-toggle-group>
+</md-card>
