@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable, Output} from "@angular/core";
 import * as _ from "lodash";
-import loremIpsum from 'lorem-ipsum';
+import loremIpsum from "lorem-ipsum";
 import {Http} from "@angular/http";
 import {AngularFireDatabase, FirebaseObjectObservable} from "angularfire2/database";
 import {Story} from "../entities/Story";
@@ -64,13 +64,28 @@ export class StoryService {
   itemsObservable: Observable<Story[]>;
   //For writing
   itemsRef: FirebaseObjectObservable<any>;
-  otherStories: Story[];
   @Output() initialized = new EventEmitter();
 
 
+  private databaseUrl: string = "https://erasmusstories-f269c.firebaseio.com/stories.json";
+
   constructor(private http: Http, private database: AngularFireDatabase) {
+    this.fetchData().subscribe(
+      (stories: Story[]) => {
+        if (stories != null) {
+          this.stories = stories;
+          console.log("[StoryService] retrieved " + this.stories.length + " stories");
+          this.initialized.emit();
+        }
+      });
+
     this.getData();
   }
+
+  fetchData() {
+    return this.http.get(this.databaseUrl).map(response => response.json());
+  }
+
 
   saveData() {
     let itemsRef = this.database.object('stories');
@@ -83,9 +98,14 @@ export class StoryService {
   }
 
   getData() {
+    console.log("[StoryService] start fetching for Data");
     let itemsObservable = this.database.list('stories');
     itemsObservable.subscribe(storyItems => {
-      storyItems.forEach(storyItem => this.stories.push(storyItem));
+      storyItems.forEach(storyItem => {
+        if (!this.stories.includes(storyItem)) {
+          this.stories.push(storyItem);
+        }
+      });
       this.initialized.emit();
     });
   }

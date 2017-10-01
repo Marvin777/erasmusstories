@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import loremIpsum from 'lorem-ipsum';
-import * as _ from 'lodash';
+import {Component, Input, OnInit} from "@angular/core";
 import {StoryService} from "../../services/story.service";
 import {Story} from "../../entities/Story";
+import {User} from "../../entities/User";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -12,13 +12,14 @@ import {Story} from "../../entities/Story";
   providers: [StoryService],
 })
 export class StoryDetailComponent implements OnInit {
-  @Input() private storyId:string;
-  story: Story;
-  constructor(private storyService: StoryService) {
+  @Input() story: Story;
+  author: User;
+
+  constructor(private storyService: StoryService, private userService: UserService) {
   }
 
   ngOnInit() {
-    this.story = this.storyService.getStory(this.storyId);
+    this.author = this.userService.getUser(this.story.authorUserId);
   }
 }
 
