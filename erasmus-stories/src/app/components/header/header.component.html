@@ -1,10 +1,13 @@
 <md-toolbar color="primary">
-  <button md-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
-  <button md-icon-button (click)="onNavigate('game')"><i class="material-icons">assignment_ind</i></button>
-  <button md-icon-button (click)="onNavigate('story')"><i class="material-icons">library_books</i></button>
-  <button md-icon-button [mdMenuTriggerFor]="menu"><i class="material-icons">notifications</i></button>
-  <button md-icon-button (click)="onNavigate('login')" *ngIf="!isAuthenticated"><i ngStyle="" class="material-icons">account_circle</i></button>
-  <button md-icon-button (click)="onLogout()" *ngIf="isAuthenticated"><i ngStyle="" class="material-icons">exit_to_app</i></button>
+  <div *ngIf="isAuthenticated">
+    <button md-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
+    <button md-icon-button (click)="onNavigate('game')"><i class="material-icons">account_circle</i></button>
+    <button md-icon-button (click)="onNavigate('story')"><i class="material-icons">library_books</i></button>
+    <button md-icon-button [mdMenuTriggerFor]="menu"><i class="material-icons">notifications</i></button>
+  </div>
+
+  <button md-icon-button (click)="onPowerButton()"><i ngStyle="" class="material-icons">power_settings_new</i></button>
+
 
   <md-menu #menu="mdMenu" yPosition="below">
     <div *ngFor="let mssg of notifications">

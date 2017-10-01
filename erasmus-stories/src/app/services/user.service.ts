@@ -3,7 +3,6 @@ import {User} from "../entities/User";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Http} from "@angular/http";
 import "rxjs/add/operator/map";
-import {Router} from "@angular/router";
 import {DataService} from "./dataService";
 
 @Injectable()
@@ -14,8 +13,7 @@ export class UserService {
   private users = [];
 
 
-  constructor(private http: Http, private database: AngularFireDatabase, private router: Router, private dataService: DataService) {
-    this.initData();
+  constructor(private http: Http, private database: AngularFireDatabase, private dataService: DataService) {
     this.fetchData().subscribe(
       (users: User[]) => {
         this.users = users;
@@ -31,19 +29,21 @@ export class UserService {
     return this.http.get(this.databaseUrl).map(response => response.json());
   }
 
-  signIn(user: User) {
-    this.users.push(user);
-    this.loggedInUser = user;
-    this.storeData().subscribe();
-  }
-
-  login() { //TODO button einbinden
-    //loggedInUser setzen//TODO
+  signIn(newUser: User) {
+    let alreadySignedUpUser = this.users.filter(user => user.mail == newUser.mail);
+    if (alreadySignedUpUser.length == 0) {
+      this.users.push(newUser);
+      this.loggedInUser = newUser;
+      this.storeData().subscribe();
+      console.log("newUser");
+    } else {
+      this.loggedInUser = alreadySignedUpUser[0];
+      console.log("alreadySignedUp");
+    }
   }
 
   logout() {
     this.loggedInUser = null;
-    this.router.navigate(['login']);
   }
 
   getUser(userID: number): User {

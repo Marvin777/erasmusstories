@@ -27,11 +27,13 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.isAuthenticated = false;
-
-    this.userService.logout();
+  onPowerButton() {
+    if (this.isAuthenticated) {
+      this.authService.logout();
+      this.isAuthenticated = false;
+      this.userService.logout();
+    }
+    this.onNavigate('login');
   }
 
   ngOnInit() {

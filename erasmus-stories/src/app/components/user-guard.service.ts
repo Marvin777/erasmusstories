@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
 import {AuthService} from "../services/auth.service";
+import "rxjs/add/operator/first";
 
 @Injectable()
 export class UserGuard implements CanActivate {
-can: boolean;
+
   constructor(private authService: AuthService) {
-    this.authService.isAuthenticated().subscribe(value => this.can);
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    return this.can;
+    return this.authService.isAuthenticated().first();
   }
 
 }
