@@ -1,28 +1,32 @@
 <md-toolbar color="primary">
-  <div>
+  <md-toolbar-row><h1>Erasmus Stories</h1></md-toolbar-row>
+  <md-toolbar-row>  <div>
     <button md-icon-button (click)="sidenav.toggle()"><i class="material-icons">menu</i></button>
     <button md-icon-button (click)="onNavigate('game')"><i class="material-icons">account_circle</i></button>
     <button md-icon-button (click)="onNavigate('story')"><i class="material-icons">library_books</i></button>
     <button md-icon-button [mdMenuTriggerFor]="menu"><i class="material-icons">notifications</i></button>
   </div>
 
-  <button md-icon-button (click)="onPowerButton()"><i ngStyle="" class="material-icons">power_settings_new</i></button>
+    <button md-icon-button (click)="onPowerButton()"><i ngStyle="" class="material-icons">power_settings_new</i></button>
+    <md-menu #menu="mdMenu" yPosition="below">
+      <div *ngFor="let mssg of notifications">
+        <button md-menu-item disabled>
+          <md-icon>{{mssg?.icon}}</md-icon>
+          <span>{{mssg?.message}}</span>
+        </button>
+        <button *ngIf="notifications.length == 0" md-menu-item disabled>
+          <span>You have 0 notifications</span>
+        </button>
+      </div>
+    </md-menu>
+  </md-toolbar-row>
 
 
-  <md-menu #menu="mdMenu" yPosition="below">
-    <div *ngFor="let mssg of notifications">
-      <button md-menu-item disabled>
-        <md-icon>{{mssg?.icon}}</md-icon>
-        <span>{{mssg?.message}}</span>
-      </button>
-      <button *ngIf="notifications.length == 0" md-menu-item disabled>
-        <span>You have 0 notifications</span>
-      </button>
-    </div>
-  </md-menu>
+
+
 
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <h1>Erasmus Stories</h1>
+
 
 </md-toolbar>
 

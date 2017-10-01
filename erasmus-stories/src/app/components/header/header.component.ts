@@ -22,9 +22,9 @@ export class HeaderComponent implements OnInit {
               private notificationService: NotificationService) {
     // this.authService.isAuthenticated().subscribe(authStatus => this.isAuthenticated = authStatus);
 
-    this.notificationService.newNotification.subscribe(
+    /*this.notificationService.newNotification.subscribe(
       () => this.notifications = this.notificationService.getNotificationsOfLoggedInUser()
-    );
+    );*/
   }
 
   onPowerButton() {
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       this.authService.logout();
       this.isAuthenticated = false;
     } else {
-
+                  this.router.navigate(["login"]);
     }
   }
 
